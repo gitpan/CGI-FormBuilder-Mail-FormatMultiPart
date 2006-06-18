@@ -8,6 +8,7 @@ my %requires = (
     'MIME::Types'       => 0,
     'MIME::Lite'        => 0,
     'Text::FormatTable' => 0,
+    'Module::Build'     => 0,
     'HTML::QuickTable'  => 0,
     'Regexp::Common'    => 0,
     'Test::More'        => 0,
@@ -20,7 +21,7 @@ use Module::Build;
 
 my $build = Module::Build->new(
     dist_name       => 'CGI::FormBuilder::Mail::FormatMultiPart',
-    dist_version    => '1.0.1',
+    dist_version    => 1.000002,
     license         => 'perl',
     requires        => { %requires },
     build_requires  => { %requires },

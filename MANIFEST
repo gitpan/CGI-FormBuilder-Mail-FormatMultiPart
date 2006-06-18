@@ -1,4 +1,3 @@
-.Build.PL.swp
 Build.PL
 changelog.txt
 lib/CGI/FormBuilder/Mail/FormatMultiPart.pm

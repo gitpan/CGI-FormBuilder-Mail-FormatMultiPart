@@ -3,8 +3,7 @@ package CGI::FormBuilder::Mail::FormatMultiPart;
 use strict;
 use warnings;
 
-use version;
-our $VERSION = qv("1.0.1");
+our $VERSION = 1.000002;
 
 use English '-no_match_vars;';
 
