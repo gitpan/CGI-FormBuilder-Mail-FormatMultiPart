@@ -21,7 +21,7 @@ use Module::Build;
 
 my $build = Module::Build->new(
     dist_name       => 'CGI::FormBuilder::Mail::FormatMultiPart',
-    dist_version    => 1.000002,
+    dist_version    => 1.000003,
     license         => 'perl',
     requires        => { %requires },
     build_requires  => { %requires },
