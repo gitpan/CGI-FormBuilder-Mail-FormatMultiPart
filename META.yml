@@ -1,12 +1,12 @@
 ---
-name: CGI::FormBuilder::Mail::FormatMultiPart
-version: 1.000003
+name: 'CGI::FormBuilder::Mail::FormatMultiPart'
+version: 1.000004
 author:
-  - Mark Hedges <hedges@ucsd.edu
-abstract: Plugin module for CGI::FormBuilder->mailresults()
+  - 'Mark Hedges <hedges@ucsd.edu>'
+abstract: 'Plugin module for CGI::FormBuilder->mailresults()'
 license: perl
 resources:
-  license: http://dev.perl.org/licenses/
+  license: 'http://dev.perl.org/licenses/'
 requires:
   CGI::FormBuilder: '>= 3.0302'
   HTML::QuickTable: 0
@@ -32,10 +32,10 @@ build_requires:
   perl: '>= 5.6.0'
   version: 0.5
 provides:
-  CGI::FormBuilder::Mail::FormatMultiPart:
+  'CGI::FormBuilder::Mail::FormatMultiPart':
     file: lib/CGI/FormBuilder/Mail/FormatMultiPart.pm
-    version: 1.000003
-generated_by: Module::Build version 0.2801
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+    version: 1.000004
+generated_by: 'Module::Build version 0.2801'
+'meta-spec':
+  url: 'http://module-build.sourceforge.net/META-spec-v1.2.html'
   version: 1.2

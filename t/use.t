@@ -51,13 +51,16 @@ my $subject = 'CGI::FormBuilder::Mail::FormatMultiPart build test';
 my $email = $ENV{FB_FMP_EMAIL};
 my $smtp  = $ENV{FB_FMP_SMTP};
 
-if (!$email || !$smtp) {
-    diag('you can set $ENV{FB_FMP_EMAIL} and $ENV{FB_FMP_SMTP} for test');
+my $specified_env_params = 0;
 
-    $email   = 'fb-formatmultipart@cartoonity.com' if !$email;
-    $smtp    = 'cartoonity.com'                    if !$smtp;
-
+if ($email && $smtp) {
     diag("using '$email' via '$smtp'");
+    $specified_env_params = 1;
+}
+else {
+    diag('set $ENV{FB_FMP_EMAIL} and $ENV{FB_FMP_SMTP} for real mail test');
+    $email = 'dummy@nowhere.com';
+    $smtp  = 'localhost';
 }
 
 my $test1 = $form->field('test1');
@@ -118,10 +121,15 @@ throws_ok
 lives_ok { $fmp = $fmplib->new( %{$main_params} ); }
     'does not live with main params';
 
-lives_ok
-    {   my $params = { %{$main_params} };
-        $fmp = $fmplib->new( %{$params} );
-        $fmp->mailresults( %{$params} );
-    }
-    'doing the real mailresults test';
+SKIP: {
+    skip 'Cannot test real mail consistently', 1 unless $specified_env_params;
+
+    lives_ok
+        {   my $params = { %{$main_params} };
+            $fmp = $fmplib->new( %{$params} );
+            $fmp->mailresults( %{$params} );
+        }
+        'doing the real mailresults test';
+}
+    
 

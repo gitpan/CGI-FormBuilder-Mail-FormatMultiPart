@@ -1,4 +1,6 @@
 
+1.0.3	removed real mail test unless you explicitly set env params
+
 1.0.1	improvements to testing, should build under windoze.
 		can use environment vars FB_FMP_SMTP and FB_FMP_EMAIL
 		as the smtp and email arguments.
