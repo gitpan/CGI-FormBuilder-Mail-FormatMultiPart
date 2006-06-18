@@ -23,7 +23,8 @@ ok( defined $fmp,           'constructor return undefined'          );
 ok( ref $fmp,               'constructor return not a reference'    );
 ok( $fmp->isa('HASH'),      'constructor return not a hash ref'     );
 ok( $fmp->isa( 'CGI::FormBuilder::Mail::FormatMultiPart' ),
-                            'costructor return not right class obj' );
+                            'constructor return not right class obj' );
+diag("\n");
 
 my $form = undef;
 my $form_name = q{cgi_fb_mail_fmp};
@@ -45,21 +46,32 @@ lives_ok
     }
     'could not get CGI::FormBuilder obj for tests';
 
-my $email = getpwuid($REAL_USER_ID).'@localhost';
+my $subject = 'CGI::FormBuilder::Mail::FormatMultiPart build test';
+
+my $email = $ENV{FB_FMP_EMAIL};
+my $smtp  = $ENV{FB_FMP_SMTP};
+
+if (!$email || !$smtp) {
+    diag('you can set $ENV{FB_FMP_EMAIL} and $ENV{FB_FMP_SMTP} for test');
+
+    $email   = 'fb-formatmultipart@cartoonity.com' if !$email;
+    $smtp    = 'cartoonity.com'                    if !$smtp;
+
+    diag("using '$email' via '$smtp'");
+}
 
 my $test1 = $form->field('test1');
 my $test2 = $form->field('test2');
 
-diag("\n");
 diag("testing form: test1 = '$test1', test2 = '$test2'\n");
 diag("sending form e-mail to $email\n");
 
 my $main_params = {
     form        => $form,
-    subject     => 'CGI::FormBuilder::Mail::FormatMultiPart build test',
+    subject     => $subject,
     to          => $email,
     from        => $email,
-    smtp        => 'localhost',
+    smtp        => $smtp,
     cc          => undef,
     bcc         => undef,
 
@@ -103,15 +115,13 @@ throws_ok
     qr{arg 'smtp' in bad format}i,
     'no throw against bad smtp mailer param';
 
+lives_ok { $fmp = $fmplib->new( %{$main_params} ); }
+    'does not live with main params';
 
 lives_ok
     {   my $params = { %{$main_params} };
-        $params->{smtp} = '127.0.0.1',
         $fmp = $fmplib->new( %{$params} );
         $fmp->mailresults( %{$params} );
     }
-    'ipv4 format 127.0.0.1 does not work as smtp arg';
-
-lives_ok { $fmp = $fmplib->new( %{$main_params} ); }
-    'does not live with main params';
+    'doing the real mailresults test';
 

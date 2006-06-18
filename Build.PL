@@ -12,7 +12,7 @@ my %requires = (
     'Regexp::Common'    => 0,
     'Test::More'        => 0,
     'Test::Exception'   => 0,
-    'version'           => 0,
+    'version'           => 0.50,
     'perl'              => '>= 5.6.0',
 );
 
@@ -20,7 +20,7 @@ use Module::Build;
 
 my $build = Module::Build->new(
     dist_name       => 'CGI::FormBuilder::Mail::FormatMultiPart',
-    dist_version    => '1.0.0',
+    dist_version    => '1.0.1',
     license         => 'perl',
     requires        => { %requires },
     build_requires  => { %requires },

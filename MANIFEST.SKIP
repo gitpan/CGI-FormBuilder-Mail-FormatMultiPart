@@ -1,0 +1,7 @@
+^_build
+^Build$
+^blib
+~$
+\.bak$
+\.swp$
+^MANIFEST\.SKIP$

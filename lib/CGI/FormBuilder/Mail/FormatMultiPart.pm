@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use version;
-our $VERSION = qv("1.0.0");
+our $VERSION = qv("1.0.1");
 
 use English '-no_match_vars;';
 
@@ -124,7 +124,11 @@ sub mailresults {
         $msg->attach( %{$_} ) for @file_attachments;
     }
 
-    $msg->send_by_smtp( $smtp );    
+    my $success = eval $msg->send_by_smtp( $smtp );    
+
+    if ($EVAL_ERROR || !$success) {
+        puke("Could not send mail. $EVAL_ERROR");
+    }
 
     return;
 }
@@ -494,6 +498,17 @@ Will attach all file uploads as multipart MIME attachments.
 The file names are listed in the form data table.
 
 If it cannot be used, it will puke a warning message and die.
+
+=head1 INSTALLATION
+
+If you cannot use CPAN or PPM in the normal way, then:
+
+    perl Build.PL
+    ./Build
+    ./Build test
+    ./Build install
+
+You need superuser/administrator privileges for the last step.
 
 =head1 WRITING YOUR OWN PLUGIN
 
