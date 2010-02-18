@@ -3,7 +3,7 @@ package CGI::FormBuilder::Mail::FormatMultiPart;
 use strict;
 use warnings;
 
-our $VERSION = 1.000003;
+our $VERSION = 1.000005;
 
 use English '-no_match_vars;';
 
@@ -415,12 +415,13 @@ sub _data_env {
     return $self->{_data_env} if exists $self->{_data_env};
 
     my $data = undef;
-    if (defined %ENV) {
+    if (scalar(keys %ENV)) {
         $data = [
             [ 'Item', 'Value' ],
-            grep exists $ENV{$_} && defined $ENV{$_},
-            map { [ $_ => $ENV{$_} ] } 
+            (   map { [ $_ => $ENV{$_} ] } 
+                grep exists $ENV{$_} && defined $ENV{$_},
                 qw( HTTP_USER_AGENT HTTP_REFERER REMOTE_ADDR REQUEST_URI )
+            ),
         ];
     }
     $self->{_data_env} = $data;
