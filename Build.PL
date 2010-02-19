@@ -19,8 +19,8 @@ my %requires = (
 use Module::Build;
 
 my $build = Module::Build->new(
-    dist_name       => 'CGI::FormBuilder::Mail::FormatMultiPart',
-    dist_version    => 1.000005,
+    module_name     => 'CGI::FormBuilder::Mail::FormatMultiPart',
+    dist_version    => 1.000006,
     license         => 'perl',
     requires        => { %requires },
     build_requires  => { %requires },

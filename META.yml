@@ -1,6 +1,6 @@
 ---
 name: 'CGI::FormBuilder::Mail::FormatMultiPart'
-version: 1.000005
+version: 1.000006
 author:
   - 'Mark Hedges <hedges@ucsd.edu>'
 abstract: 'Plugin module for CGI::FormBuilder->mailresults()'
@@ -34,7 +34,7 @@ build_requires:
 provides:
   'CGI::FormBuilder::Mail::FormatMultiPart':
     file: lib/CGI/FormBuilder/Mail/FormatMultiPart.pm
-    version: 1.000005
+    version: 1.000006
 generated_by: 'Module::Build version 0.2801'
 'meta-spec':
   url: 'http://module-build.sourceforge.net/META-spec-v1.2.html'

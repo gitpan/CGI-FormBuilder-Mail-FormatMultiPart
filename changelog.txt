@@ -1,3 +1,4 @@
+1.0.6   corrected Module::Build error in Build.PL
 
 1.0.5   fixed parsing of %ENV values for mail output
 
